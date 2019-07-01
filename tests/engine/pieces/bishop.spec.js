@@ -56,4 +56,34 @@ describe('Bishop', () => {
 
         moves.should.not.deep.include(Square.at(7, 7));
     });
+    it('can capture opposing piece', () => {
+        const bishop = new Bishop(Player.WHITE);
+        const opposingPiece = new Pawn(Player.BLACK);
+        board.setPiece(Square.at(4, 4), bishop);
+        board.setPiece(Square.at(6, 6), opposingPiece);
+
+        const moves = bishop.getAvailableMoves(board);
+
+        moves.should.deep.include(Square.at(6, 6));
+    })
+    it('cannot capture friendly piece', () => {
+        const bishop = new Bishop(Player.WHITE);
+        const friendlyPiece = new Pawn(Player.WHITE);
+        board.setPiece(Square.at(4, 4), bishop);
+        board.setPiece(Square.at(6, 6), friendlyPiece);
+
+        const moves = bishop.getAvailableMoves(board);
+
+        moves.should.not.deep.include(Square.at(6, 6));
+    })
+    it('cannot capture opposing king', () => {
+        const bishop = new Bishop(Player.WHITE);
+        const opposingKing = new King(Player.BLACK);
+        board.setPiece(Square.at(4, 4), bishop);
+        board.setPiece(Square.at(6, 6), opposingKing);
+
+        const moves = bishop.getAvailableMoves(board);
+
+        moves.should.not.deep.include(Square.at(6, 6));
+    }) 
 });
