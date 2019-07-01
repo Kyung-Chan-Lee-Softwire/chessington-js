@@ -17,8 +17,11 @@ export default class Queen extends Piece {
         let tempCol = col + 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow + 1;
             tempCol = tempCol + 1;
         }
@@ -27,8 +30,11 @@ export default class Queen extends Piece {
         tempCol = col + 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow - 1;
             tempCol = tempCol + 1;
         }
@@ -37,8 +43,11 @@ export default class Queen extends Piece {
         tempCol = col - 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow + 1;
             tempCol = tempCol - 1;
         }
@@ -47,8 +56,11 @@ export default class Queen extends Piece {
         tempCol = col - 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow - 1;
             tempCol = tempCol - 1;
         }
@@ -57,8 +69,11 @@ export default class Queen extends Piece {
         tempCol = col;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow + 1;
         }
         // Finds all vertical downward moves
@@ -66,8 +81,11 @@ export default class Queen extends Piece {
         tempCol = col;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow - 1;
         }
         // Finds all horizontal left moves
@@ -75,8 +93,11 @@ export default class Queen extends Piece {
         tempCol = col + 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempCol = tempCol + 1;
         }
         // Finds all horizontal right moves
@@ -84,8 +105,11 @@ export default class Queen extends Piece {
         tempCol = col - 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempCol = tempCol - 1;
         }
         return moves;
