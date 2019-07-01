@@ -8,12 +8,53 @@ export default class Bishop extends Piece {
 
     getAvailableMoves(board) {
         let moves = Array(0);
-        moves = [
-            // Forwards diagonal
-            Square.at(0, 1), Square.at(1, 2), Square.at(3, 4), Square.at(4, 5), Square.at(5, 6), Square.at(6, 7),
-            // Backwards diagonal
-            Square.at(0, 5), Square.at(1, 4), Square.at(3, 2), Square.at(4, 1), Square.at(5, 0)
-        ]
+        const currentSquare = board.findPiece(this);
+        const row = currentSquare.row;
+        const col = currentSquare.col;
+        // Finds all right up moves
+        let tempRow = row + 1;
+        let tempCol = col + 1;
+        while(true){
+            if(tempRow > 7) break;
+            if(tempCol > 7) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow + 1;
+            tempCol = tempCol + 1;
+        }
+        // Finds all right down moves
+        tempRow = row - 1;
+        tempCol = col + 1;
+        while(true){
+            if(tempRow < 0) break;
+            if(tempCol > 7) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow - 1;
+            tempCol = tempCol + 1;
+        }
+        // Finds all left up moves
+        tempRow = row + 1;
+        tempCol = col - 1;
+        while(true){
+            if(tempRow > 7) break;
+            if(tempCol < 0) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow + 1;
+            tempCol = tempCol - 1;
+        }
+        // Finds all left down moves
+        tempRow = row - 1;
+        tempCol = col - 1;
+        while(true){
+            if(tempRow < 0) break;
+            if(tempCol < 0) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow - 1;
+            tempCol = tempCol - 1;
+        }
         return moves;
     }
 }

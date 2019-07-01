@@ -8,10 +8,17 @@ export default class King extends Piece {
 
     getAvailableMoves(board) {
         let moves = new Array(0);
-        moves = [
-            Square.at(2, 3), Square.at(2, 4), Square.at(2, 5), Square.at(3, 5),
-            Square.at(4, 5), Square.at(4, 4), Square.at(4, 3), Square.at(3, 3)
-        ];
+        const currentSquare = board.findPiece(this);
+        const row = currentSquare.row;
+        const col = currentSquare.col;
+        if(row + 1 <= 7) moves.push(Square.at(row + 1,col));
+        if(col + 1 <= 7) moves.push(Square.at(row,col + 1));
+        if(row - 1 >= 0) moves.push(Square.at(row - 1,col));
+        if(col - 1 >= 0) moves.push(Square.at(row,col - 1));
+        if(row + 1 <= 7 && col + 1 <= 7) moves.push(Square.at(row + 1,col + 1));
+        if(row - 1 >= 0 && col + 1 <= 7) moves.push(Square.at(row - 1,col + 1));
+        if(row + 1 <= 7 && col - 1 >= 0) moves.push(Square.at(row + 1,col - 1));
+        if(row - 1 >= 0 && col - 1 >= 0) moves.push(Square.at(row - 1,col - 1));
         return moves;
     }
 }

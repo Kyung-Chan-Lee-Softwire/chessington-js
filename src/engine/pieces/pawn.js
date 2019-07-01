@@ -9,27 +9,34 @@ export default class Pawn extends Piece {
 
     getAvailableMoves(board) {
         let moves = new Array(0);
+        const currentSquare = board.findPiece(this);
+        const row = currentSquare.row;
+        const col = currentSquare.col;
         while (this.player == Player.WHITE){
-            if(board.getPiece(Square.at(board.findPiece(this).row + 1,board.findPiece(this).col))) break;
+            if(row == 7) break;
+            if(board.getPiece(Square.at(row + 1,col))) break;
+            if(board.getPiece(Square.at(row + 1,col))) break;
 
-            moves.push(Square.at(board.findPiece(this).row + 1,board.findPiece(this).col));
+            moves.push(Square.at(row + 1,col));
 
-            if(board.getPiece(Square.at(board.findPiece(this).row + 2,board.findPiece(this).col))) break;
+            if(board.getPiece(Square.at(row + 2,col))) break;
 
             if(!this.hasMoved) {
-                moves.push(Square.at(board.findPiece(this).row + 2,board.findPiece(this).col));
+                moves.push(Square.at(row + 2,col));
             }
             break;
         }
         while (this.player == Player.BLACK){
-            if(board.getPiece(Square.at(board.findPiece(this).row - 1,board.findPiece(this).col))) break;
+            if(row == 0) break;
+            if(board.getPiece(Square.at(row - 1,col))) break;
+            if(board.getPiece(Square.at(row + 1,col))) break;
 
-            moves.push(Square.at(board.findPiece(this).row - 1,board.findPiece(this).col));
+            moves.push(Square.at(row - 1,col));
 
-            if(board.getPiece(Square.at(board.findPiece(this).row - 2,board.findPiece(this).col))) break;
+            if(board.getPiece(Square.at(row - 2,col))) break;
 
             if(!this.hasMoved){
-                moves.push(Square.at(board.findPiece(this).row - 2,board.findPiece(this).col));
+                moves.push(Square.at(row - 2,col));
             }
             break;
         }

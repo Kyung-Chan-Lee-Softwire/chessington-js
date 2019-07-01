@@ -8,18 +8,89 @@ export default class Queen extends Piece {
 
     getAvailableMoves(board) {
         let moves = new Array(0);
-        moves = [
-            // Horizontal
-            Square.at(2, 0), Square.at(2, 1), Square.at(2, 2), Square.at(2, 4), Square.at(2, 5), Square.at(2, 6), Square.at(2, 7),
-            // Vertical
-            Square.at(0, 3), Square.at(1, 3), Square.at(3, 3), Square.at(4, 3), Square.at(5, 3), Square.at(6, 3), Square.at(7, 3)
-        ];
-        moves = moves.concat([
-            // Forwards diagonal
-            Square.at(0, 1), Square.at(1, 2), Square.at(3, 4), Square.at(4, 5), Square.at(5, 6), Square.at(6, 7),
-            // Backwards diagonal
-            Square.at(0, 5), Square.at(1, 4), Square.at(3, 2), Square.at(4, 1), Square.at(5, 0)
-        ]);
-        return moves;
+        const currentSquare = board.findPiece(this);
+        const row = currentSquare.row;
+        const col = currentSquare.col;
+        // Finds all right up moves
+        let tempRow = row + 1;
+        let tempCol = col + 1;
+        while(true){
+            if(tempRow > 7) break;
+            if(tempCol > 7) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow + 1;
+            tempCol = tempCol + 1;
+        }
+        // Finds all right down moves
+        tempRow = row - 1;
+        tempCol = col + 1;
+        while(true){
+            if(tempRow < 0) break;
+            if(tempCol > 7) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow - 1;
+            tempCol = tempCol + 1;
+        }
+        // Finds all left up moves
+        tempRow = row + 1;
+        tempCol = col - 1;
+        while(true){
+            if(tempRow > 7) break;
+            if(tempCol < 0) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow + 1;
+            tempCol = tempCol - 1;
+        }
+        // Finds all left down moves
+        tempRow = row - 1;
+        tempCol = col - 1;
+        while(true){
+            if(tempRow < 0) break;
+            if(tempCol < 0) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow - 1;
+            tempCol = tempCol - 1;
+        }
+        // Finds all vertical upward moves
+        tempRow = row + 1;
+        tempCol = col;
+        while(true){
+            if(tempRow > 7) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow + 1;
+        }
+        // Finds all vertical downward moves
+        tempRow = row - 1;
+        tempCol = col;
+        while(true){
+            if(tempRow < 0) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempRow = tempRow - 1;
+        }
+        // Finds all horizontal left moves
+        tempRow = row;
+        tempCol = col + 1;
+        while(true){
+            if(tempCol > 7) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempCol = tempCol + 1;
+        }
+        // Finds all horizontal right moves
+        tempRow = row;
+        tempCol = col - 1;
+        while(true){
+            if(tempCol < 0) break;
+            moves.push(Square.at(tempRow,tempCol));
+            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            tempCol = tempCol - 1;
+        }
+        return moves;ves;
     }
 }

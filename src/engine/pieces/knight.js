@@ -8,10 +8,17 @@ export default class Knight extends Piece {
 
     getAvailableMoves(board) {
         let moves = new Array(0);
-        moves = [
-            Square.at(2, 5), Square.at(2, 3), Square.at(3, 6), Square.at(3, 2),
-            Square.at(5, 6), Square.at(5, 2), Square.at(6, 5), Square.at(6, 3)
-        ];
+        const currentSquare = board.findPiece(this);
+        const row = currentSquare.row;
+        const col = currentSquare.col;
+        if(row + 2 <= 7 && col + 1 <= 7) moves.push(Square.at(row + 2,col + 1));
+        if(row - 2 >= 0 && col + 1 <= 7) moves.push(Square.at(row - 2,col + 1));
+        if(row + 2 <= 7 && col - 1 >= 0) moves.push(Square.at(row + 2,col - 1));
+        if(row - 2 >= 0 && col - 1 >= 0) moves.push(Square.at(row - 2,col - 1));
+        if(row + 1 <= 7 && col + 2 <= 7) moves.push(Square.at(row + 1,col + 2));
+        if(row - 1 >= 0 && col + 2 <= 7) moves.push(Square.at(row - 1,col + 2));
+        if(row + 1 <= 7 && col - 2 >= 0) moves.push(Square.at(row + 1,col - 2));
+        if(row - 1 >= 0 && col - 2 >= 0) moves.push(Square.at(row - 1,col - 2));
         return moves;
     }
 }
