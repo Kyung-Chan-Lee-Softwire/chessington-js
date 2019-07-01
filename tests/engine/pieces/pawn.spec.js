@@ -41,7 +41,16 @@ describe('Pawn', () => {
 
             moves.should.be.empty;
         });
+        it('can capture opposing piece diagonally', () => {
+            const pawn = new Pawn(Player.WHITE);
+            const opposingpiece = new Pawn(Player.Black);
+            board.setPiece(Square.at(1, 0), pawn);
+            board.setPiece(Square.at(2, 1), opposingpiece);
 
+            const moves = pawn.getAvailableMoves(board);
+            moves.should.deep.include(Square.at(2, 1));
+
+        });
     });
 
     describe('black pawns', () => {
@@ -77,6 +86,16 @@ describe('Pawn', () => {
             const moves = pawn.getAvailableMoves(board);
 
             moves.should.be.empty;
+        });
+        it('can capture opposing piece diagonally', () => {
+            const pawn = new Pawn(Player.BLACK);
+            const opposingpiece = new Pawn(Player.WHITE);
+            board.setPiece(Square.at(6, 7), pawn);
+            board.setPiece(Square.at(5, 6), opposingpiece);
+
+            const moves = pawn.getAvailableMoves(board);
+            moves.should.deep.include(Square.at(5, 6));
+
         });
     });
 

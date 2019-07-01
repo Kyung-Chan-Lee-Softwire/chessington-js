@@ -14,6 +14,15 @@ export default class Pawn extends Piece {
         const col = currentSquare.col;
         while (this.player == Player.WHITE){
             if(row == 7) break;
+
+            if(this.validCoordinate(row + 1,col + 1) && board.getPiece(Square.at(row + 1,col + 1)) && board.getPiece(Square.at(row + 1,col + 1)).player != this.player){
+                moves.push(Square.at(row + 1,col + 1));
+            }
+            
+            if(this.validCoordinate(row + 1,col - 1) && board.getPiece(Square.at(row + 1,col - 1)) && board.getPiece(Square.at(row + 1,col - 1)).player != this.player){
+                moves.push(Square.at(row + 1,col - 1));
+            }
+
             if(board.getPiece(Square.at(row + 1,col))) break;
 
             moves.push(Square.at(row + 1,col));
@@ -27,6 +36,15 @@ export default class Pawn extends Piece {
         }
         while (this.player == Player.BLACK){
             if(row == 0) break;
+
+            if(this.validCoordinate(row - 1,col + 1) && board.getPiece(Square.at(row - 1,col + 1)) && board.getPiece(Square.at(row - 1,col + 1)).player != this.player){
+                moves.push(Square.at(row - 1,col + 1));
+            }
+            
+            if(this.validCoordinate(row - 1,col - 1) && board.getPiece(Square.at(row - 1,col - 1)) && board.getPiece(Square.at(row - 1,col - 1)).player != this.player){
+                moves.push(Square.at(row - 1,col - 1));
+            }
+
             if(board.getPiece(Square.at(row - 1,col))) break;
 
             moves.push(Square.at(row - 1,col));
