@@ -1,5 +1,6 @@
 import Piece from './piece';
 import Square from '../square';
+import King from './king';
 import Player from '../player';
 
 export default class Pawn extends Piece {
@@ -15,11 +16,13 @@ export default class Pawn extends Piece {
         while (this.player == Player.WHITE){
             if(row == 7) break;
 
-            if(this.validCoordinate(row + 1,col + 1) && board.getPiece(Square.at(row + 1,col + 1)) && board.getPiece(Square.at(row + 1,col + 1)).player != this.player){
+            if(this.validCoordinate(row + 1,col + 1) && board.getPiece(Square.at(row + 1,col + 1))
+                && board.getPiece(Square.at(row + 1,col + 1)).player != this.player && !(board.getPiece(Square.at(row + 1,col + 1)) instanceof King)){
                 moves.push(Square.at(row + 1,col + 1));
             }
             
-            if(this.validCoordinate(row + 1,col - 1) && board.getPiece(Square.at(row + 1,col - 1)) && board.getPiece(Square.at(row + 1,col - 1)).player != this.player){
+            if(this.validCoordinate(row + 1,col - 1) && board.getPiece(Square.at(row + 1,col - 1))
+                && board.getPiece(Square.at(row + 1,col - 1)).player != this.player && !(board.getPiece(Square.at(row + 1,col + 1)) instanceof King)){
                 moves.push(Square.at(row + 1,col - 1));
             }
 
@@ -37,11 +40,13 @@ export default class Pawn extends Piece {
         while (this.player == Player.BLACK){
             if(row == 0) break;
 
-            if(this.validCoordinate(row - 1,col + 1) && board.getPiece(Square.at(row - 1,col + 1)) && board.getPiece(Square.at(row - 1,col + 1)).player != this.player){
+            if(this.validCoordinate(row - 1,col + 1) && board.getPiece(Square.at(row - 1,col + 1))
+                && board.getPiece(Square.at(row - 1,col + 1)).player != this.player && !(board.getPiece(Square.at(row - 1,col + 1)) instanceof King)){
                 moves.push(Square.at(row - 1,col + 1));
             }
             
-            if(this.validCoordinate(row - 1,col - 1) && board.getPiece(Square.at(row - 1,col - 1)) && board.getPiece(Square.at(row - 1,col - 1)).player != this.player){
+            if(this.validCoordinate(row - 1,col - 1) && board.getPiece(Square.at(row - 1,col - 1))
+                && board.getPiece(Square.at(row - 1,col - 1)).player != this.player && !(board.getPiece(Square.at(row - 1,col - 1)) instanceof King)){
                 moves.push(Square.at(row - 1,col - 1));
             }
 

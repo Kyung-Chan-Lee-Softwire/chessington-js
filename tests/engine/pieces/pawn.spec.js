@@ -1,5 +1,6 @@
 import 'chai/register-should';
 import Pawn from '../../../src/engine/pieces/pawn';
+import King from '../../../src/engine/pieces/king';
 import Rook from '../../../src/engine/pieces/rook';
 import Board from '../../../src/engine/board';
 import Player from '../../../src/engine/player';
@@ -49,6 +50,15 @@ describe('Pawn', () => {
 
             const moves = pawn.getAvailableMoves(board);
             moves.should.deep.include(Square.at(2, 1));
+        });
+        it('cannot capture opposing king diagonally', () => {
+            const pawn = new Pawn(Player.WHITE);
+            const opposingking = new King(Player.Black);
+            board.setPiece(Square.at(1, 0), pawn);
+            board.setPiece(Square.at(2, 1), opposingking);
+
+            const moves = pawn.getAvailableMoves(board);
+            moves.should.not.deep.include(Square.at(5, 6));
 
         });
     });
@@ -95,6 +105,17 @@ describe('Pawn', () => {
 
             const moves = pawn.getAvailableMoves(board);
             moves.should.deep.include(Square.at(5, 6));
+
+        });
+        
+        it('cannot capture opposing king diagonally', () => {
+            const pawn = new Pawn(Player.BLACK);
+            const opposingking = new King(Player.WHITE);
+            board.setPiece(Square.at(6, 7), pawn);
+            board.setPiece(Square.at(5, 6), opposingking);
+
+            const moves = pawn.getAvailableMoves(board);
+            moves.should.not.deep.include(Square.at(5, 6));
 
         });
     });
