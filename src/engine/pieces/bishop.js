@@ -1,5 +1,6 @@
 import Piece from './piece';
 import Square from '../square';
+import King from './king';
 
 export default class Bishop extends Piece {
     constructor(player) {
@@ -16,8 +17,11 @@ export default class Bishop extends Piece {
         let tempCol = col + 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow + 1;
             tempCol = tempCol + 1;
         }
@@ -26,8 +30,11 @@ export default class Bishop extends Piece {
         tempCol = col + 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow - 1;
             tempCol = tempCol + 1;
         }
@@ -36,8 +43,11 @@ export default class Bishop extends Piece {
         tempCol = col - 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow + 1;
             tempCol = tempCol - 1;
         }
@@ -46,8 +56,11 @@ export default class Bishop extends Piece {
         tempCol = col - 1;
         while(true){
             if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow - 1;
             tempCol = tempCol - 1;
         }

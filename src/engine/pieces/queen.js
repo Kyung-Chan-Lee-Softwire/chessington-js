@@ -1,5 +1,6 @@
 import Piece from './piece';
 import Square from '../square';
+import King from './king';
 
 export default class Queen extends Piece {
     constructor(player) {
