@@ -15,8 +15,7 @@ export default class Queen extends Piece {
         let tempRow = row + 1;
         let tempCol = col + 1;
         while(true){
-            if(tempRow > 7) break;
-            if(tempCol > 7) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
             moves.push(Square.at(tempRow,tempCol));
             if(board.getPiece(Square.at(tempRow,tempCol))) break;
             tempRow = tempRow + 1;
@@ -26,8 +25,7 @@ export default class Queen extends Piece {
         tempRow = row - 1;
         tempCol = col + 1;
         while(true){
-            if(tempRow < 0) break;
-            if(tempCol > 7) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
             moves.push(Square.at(tempRow,tempCol));
             if(board.getPiece(Square.at(tempRow,tempCol))) break;
             tempRow = tempRow - 1;
@@ -37,8 +35,7 @@ export default class Queen extends Piece {
         tempRow = row + 1;
         tempCol = col - 1;
         while(true){
-            if(tempRow > 7) break;
-            if(tempCol < 0) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
             moves.push(Square.at(tempRow,tempCol));
             if(board.getPiece(Square.at(tempRow,tempCol))) break;
             tempRow = tempRow + 1;
@@ -48,8 +45,7 @@ export default class Queen extends Piece {
         tempRow = row - 1;
         tempCol = col - 1;
         while(true){
-            if(tempRow < 0) break;
-            if(tempCol < 0) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
             moves.push(Square.at(tempRow,tempCol));
             if(board.getPiece(Square.at(tempRow,tempCol))) break;
             tempRow = tempRow - 1;
@@ -59,7 +55,7 @@ export default class Queen extends Piece {
         tempRow = row + 1;
         tempCol = col;
         while(true){
-            if(tempRow > 7) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
             moves.push(Square.at(tempRow,tempCol));
             if(board.getPiece(Square.at(tempRow,tempCol))) break;
             tempRow = tempRow + 1;
@@ -68,7 +64,7 @@ export default class Queen extends Piece {
         tempRow = row - 1;
         tempCol = col;
         while(true){
-            if(tempRow < 0) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
             moves.push(Square.at(tempRow,tempCol));
             if(board.getPiece(Square.at(tempRow,tempCol))) break;
             tempRow = tempRow - 1;
@@ -77,7 +73,7 @@ export default class Queen extends Piece {
         tempRow = row;
         tempCol = col + 1;
         while(true){
-            if(tempCol > 7) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
             moves.push(Square.at(tempRow,tempCol));
             if(board.getPiece(Square.at(tempRow,tempCol))) break;
             tempCol = tempCol + 1;
@@ -86,11 +82,11 @@ export default class Queen extends Piece {
         tempRow = row;
         tempCol = col - 1;
         while(true){
-            if(tempCol < 0) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
             moves.push(Square.at(tempRow,tempCol));
             if(board.getPiece(Square.at(tempRow,tempCol))) break;
             tempCol = tempCol - 1;
         }
-        return moves;ves;
+        return moves;
     }
 }

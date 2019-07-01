@@ -15,7 +15,6 @@ export default class Pawn extends Piece {
         while (this.player == Player.WHITE){
             if(row == 7) break;
             if(board.getPiece(Square.at(row + 1,col))) break;
-            if(board.getPiece(Square.at(row + 1,col))) break;
 
             moves.push(Square.at(row + 1,col));
 
@@ -29,7 +28,6 @@ export default class Pawn extends Piece {
         while (this.player == Player.BLACK){
             if(row == 0) break;
             if(board.getPiece(Square.at(row - 1,col))) break;
-            if(board.getPiece(Square.at(row + 1,col))) break;
 
             moves.push(Square.at(row - 1,col));
 

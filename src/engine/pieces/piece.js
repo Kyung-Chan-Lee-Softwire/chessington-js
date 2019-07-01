@@ -13,4 +13,12 @@ export default class Piece {
         board.movePiece(currentSquare, newSquare);
         this.hasMoved = true;
     }
+
+    validCoordinate(Row,Col) {
+        if(Row > 7) return false;
+        if(Col > 7) return false;
+        if(Row < 0) return false;
+        if(Col < 0) return false;
+        return true
+    }
 }

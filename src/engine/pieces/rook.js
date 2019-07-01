@@ -1,6 +1,6 @@
 import Piece from './piece';
 import Square from '../square';
-import { cpus } from 'os';
+import King from './king';
 
 export default class Rook extends Piece {
     constructor(player) {
@@ -16,36 +16,48 @@ export default class Rook extends Piece {
         let tempRow = row + 1;
         let tempCol = col;
         while(true){
-            if(tempRow > 7) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow + 1;
         }
         // Finds all vertical downward moves
         tempRow = row - 1;
         tempCol = col;
         while(true){
-            if(tempRow < 0) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempRow = tempRow - 1;
         }
         // Finds all horizontal left moves
         tempRow = row;
         tempCol = col + 1;
         while(true){
-            if(tempCol > 7) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempCol = tempCol + 1;
         }
         // Finds all horizontal right moves
         tempRow = row;
         tempCol = col - 1;
         while(true){
-            if(tempCol < 0) break;
+            if(!this.validCoordinate(tempRow,tempCol)) break;
+            const pieceOnSquare = board.getPiece(Square.at(tempRow, tempCol));
+            if(pieceOnSquare && pieceOnSquare.player == this.player) break;
+            if(pieceOnSquare && pieceOnSquare instanceof King) break;
             moves.push(Square.at(tempRow,tempCol));
-            if(board.getPiece(Square.at(tempRow,tempCol))) break;
+            if(pieceOnSquare) break;
             tempCol = tempCol - 1;
         }
         return moves;
